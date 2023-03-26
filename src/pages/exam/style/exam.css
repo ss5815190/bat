@@ -1,0 +1,85 @@
+.exam{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.ex_wrap{
+	margin-bottom: 100px;
+}
+.ex_wrap .ex1{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.ex_wrap .ex1 .ex1_ans{
+	margin-top: 50px;
+}
+.ex_wrap .ex1 .ex1_ans .ex1_enter{
+	margin: 20px;
+}
+/*ex2*/
+.ex_wrap .ex2{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.prize{
+	display: flex;
+	justify-content: center;
+}
+/*ex4*/
+.ex4{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.chatroom{
+	height: 600px;
+	width: 400px;
+	border-style: solid;
+	overflow: auto;
+	position: relative;
+}
+
+.respon{
+	
+	background-color: yellow;
+	display: flex;
+	align-items: center;
+	margin: 5px 15px 20px 15px;
+}
+.respon .avater{
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	background-color: red;
+
+}
+.respon .content{
+	
+	width: 80%;
+	white-space: pre-line;
+	word-break: break-all;
+	background-color: gray;
+}
+.enter{
+
+	height: 15%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: blue;
+	position: absolute;
+	bottom: 0;
+}
+.enter .input{
+	width: 90%;
+	height: 30px;
+
+}
+.enter button{
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+}
