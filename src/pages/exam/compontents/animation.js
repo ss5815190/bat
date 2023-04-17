@@ -1,5 +1,6 @@
 import '../style/animation.css';
 import { useEffect} from 'react';
+/*7hWP9.V/,VbbcZ_ */
 const Animation=()=>{
 	
 	
@@ -31,10 +32,10 @@ const Animation=()=>{
 		
 		}
 		checkbox();//手動調用 剛渲染完不會觸發
-	    window.addEventListener('scroll', checkbox,true);
+	    window.addEventListener('scroll', checkbox, true);
 
 	    return () => {
-	       window.removeEventListener('scroll', checkbox,true);
+	       window.removeEventListener('scroll', checkbox, true);
 	    };
 	  }, []);
 	const FNAME="NOOOO";
@@ -70,6 +71,60 @@ const Animation=()=>{
 					<span style={{'--i':'10'}}><i>{FNAME}</i>{NAME}</span>
 
 				</div>	
+			</div>
+			<div className="animation">
+				<div className="excss">
+					<ul className="nav">
+						<li>1~367676767676
+							<ul>
+								<li>1111 
+								<ul>
+									<li>abc</li>
+									<li>abc</li>
+									<li>abc</li>
+									<li>abc</li>
+								</ul>
+								</li>
+								<li>2222 
+								<ul>
+									<li>abc</li>
+								</ul>
+								</li>
+								<li>3333 
+								<ul>
+									<li>abc</li>
+								</ul>
+								</li>
+							</ul>
+						</li>
+						<li>4~667676767676
+							<ul>
+								<li>4444 
+								<ul>
+									<li>abc</li>
+								</ul>
+								</li>
+								<li>5555 
+								<ul>
+									<li>abc</li>
+								</ul>
+								</li>
+								<li>6666 
+								<ul>
+									<li>abc</li>
+								</ul>
+								</li>
+							</ul>
+						</li>
+						<li>7~967676767676
+							<ul>
+								<li>7777</li>
+								<li>8888</li>
+								<li>9999</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 		)

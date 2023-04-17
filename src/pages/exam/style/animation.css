@@ -114,3 +114,46 @@
 		transform: perspective(1000px) rotateX(360deg)
 	}
 }
+
+/*excss*/
+.excss{
+display: flex;
+background-image: linear-gradient(to right, blue, red);
+}
+
+.nav{
+	max-width: 1024px;
+	width: 100%;
+	height: 100%;
+	margin:0px;
+	padding: 0px;
+	
+}
+.nav li {
+	list-style: none;
+	position: relative;
+	cursor: pointer;
+	width: 100%;
+	text-align: center;
+}
+.nav li ul{
+	position: absolute;
+	top: 0;
+	right: 0;
+	transform: translateX(100%);
+	display: none;
+	margin: 0;
+	padding: 0;
+	background-color: aqua;
+	cursor: pointer;
+	width: 300px;
+	
+}
+li:hover{
+	background-color: #222;
+}
+.nav li:hover >ul{
+	display: block;
+}
+
+
