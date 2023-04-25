@@ -4,14 +4,17 @@
 	flex-direction: column;
 	align-items: center;
 	margin-top: 200px;
+	gap: 30vw;
 }
 .animation{
 	display: flex;
 	align-items: center;
 	width: 80%;
-	margin-bottom: 30vw;
-	transition: 1s;
+	/*margin-bottom: 30vw;*/
+	transition: 2s;
 	justify-content: space-around;
+	position: relative;
+	background-color: #ec9535;
 }
 .animation .box{
 	background-color: yellow;
@@ -31,6 +34,9 @@
 }
 .n-active{
 	opacity: 0;
+}
+img{
+	transition: 2s;
 }
 /**/
 .shadow{
@@ -155,5 +161,10 @@ li:hover{
 .nav li:hover >ul{
 	display: block;
 }
-
+.animation img{
+	width: 800px;
+	height: 500px;
+	
+	
+}
 

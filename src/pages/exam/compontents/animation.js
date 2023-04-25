@@ -5,19 +5,20 @@ const Animation=()=>{
 	
 	
 	useEffect(() => {
-		const allBox = document.querySelectorAll('div.animation');
+		const allBox = document.querySelectorAll('img');
 		console.log(allBox)
 	    const checkbox=()=>{
 	   
-			allBox.forEach((box)=>{
+			allBox.forEach((box,id)=>{
+				
 				 //條件一：頂部小於頁面高度
 		        const currentPosition = window.scrollY + window.innerHeight;
-		        const boxPosition = box.offsetTop;
+		        const boxPosition = box.offsetTop + box.offsetParent.offsetTop;//指box元素的父元素相對於文檔頂部的偏移量
 		        const boxAppear = currentPosition > boxPosition;
 		        //條件二：底部高於頁面高度
-		        const boxBottom = box.offsetTop + box.clientHeight;
+		        const boxBottom = box.offsetTop + box.offsetParent.offsetTop + box.clientHeight;
 		        const boxOnWindow = window.scrollY < boxBottom;
-
+				console.log(id+" "+boxPosition)
 		        if(boxOnWindow && boxAppear) {
 		        //符合出現條件，加上active此class
 		          box.classList.add('active');
@@ -44,13 +45,22 @@ const Animation=()=>{
 	return(
 		<div className="a">
 			<div className="animation">
+				<img src="https://cdn.cloudflare.steamstatic.com/store/home/store_home_share.jpg" alt="" />
+			</div>
+			<div className="animation">
+				<img src="https://cdn.cloudflare.steamstatic.com/store/home/store_home_share.jpg" alt="" />
+			</div>
+			<div className="animation">
+				<img src="https://cdn.cloudflare.steamstatic.com/store/home/store_home_share.jpg" alt="" />
+			</div>
+			{/* <div className="animation">
 				<div className="box">1</div>
 				<div className="box">2</div>
 				<div className="box">3</div>
 				<div className="box">4</div>
 				<div className="box">5</div>
 			</div>
-			<div className="animation">
+			<div className="animation ">
 				<div className="shadow">
 					<button className="btn">
 						BUTTON
@@ -125,7 +135,8 @@ const Animation=()=>{
 						</li>
 					</ul>
 				</div>
-			</div>
+			</div> */}
+
 		</div>
 		)
 }
