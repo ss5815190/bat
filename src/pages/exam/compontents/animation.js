@@ -39,8 +39,8 @@ const Animation=()=>{
 	       window.removeEventListener('scroll', checkbox, true);
 	    };
 	  }, []);
-	const FNAME="NOOOO";
-	const NAME="SMOKEcigarette"
+	//const FNAME="NOOOO";
+	//const NAME="SMOKEcigarette"
 
 	return(
 		<div className="a">
@@ -53,6 +53,7 @@ const Animation=()=>{
 			<div className="animation">
 				<img src="https://cdn.cloudflare.steamstatic.com/store/home/store_home_share.jpg" alt="" />
 			</div>
+			<div className="test"><img src="https://cdn.cloudflare.steamstatic.com/store/home/store_home_share.jpg" alt="" /></div>
 			{/* <div className="animation">
 				<div className="box">1</div>
 				<div className="box">2</div>
