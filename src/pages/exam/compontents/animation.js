@@ -9,16 +9,16 @@ const Animation=()=>{
 		console.log(allBox)
 	    const checkbox=()=>{
 	   
-			allBox.forEach((box,id)=>{
-				
-				 //條件一：頂部小於頁面高度
-		        const currentPosition = window.scrollY + window.innerHeight;
-		        const boxPosition = box.offsetTop + box.offsetParent.offsetTop;//指box元素的父元素相對於文檔頂部的偏移量
-		        const boxAppear = currentPosition > boxPosition;
-		        //條件二：底部高於頁面高度
-		        const boxBottom = box.offsetTop + box.offsetParent.offsetTop + box.clientHeight;
-		        const boxOnWindow = window.scrollY < boxBottom;
-				console.log(id+" "+boxPosition)
+			allBox.forEach((box)=>{
+                const boxRect = box.getBoundingClientRect();
+                const boxTop = boxRect.top + window.pageYOffset;
+                const boxBottom = boxRect.bottom + window.pageYOffset;
+                const currentPosition = window.scrollY + window.innerHeight;
+                //條件一：頂部小於頁面高度
+                const boxAppear = currentPosition > boxTop;
+                //條件二：底部高於頁面高度
+                const boxOnWindow = window.scrollY < boxBottom;
+
 		        if(boxOnWindow && boxAppear) {
 		        //符合出現條件，加上active此class
 		          box.classList.add('active');
