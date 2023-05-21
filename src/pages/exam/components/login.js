@@ -95,10 +95,8 @@ const Login=()=>{
             <div className="title">Login</div>
                 <form >
                     <input type="email" name="email" placeholder="email"
-                    /*onChange={(e)=>setEmail(e.target.value)}*/
                     required/>
                     <input type="password" name="password" placeholder="password"
-                   /* onChange={(e)=>setPassword(e.target.value)}*/
                       required/>
                     <button className="sign_in" disabled={isButtonDisabled}>sign in</button>
                 </form>
@@ -108,15 +106,12 @@ const Login=()=>{
             <div className="login" style={{display: Login==='signup' ? 'block' : 'none' }}>
             <div className="title">Register</div>
                 <form onSubmit={onSubmit}>
-                    <input type="text" name="username" placeholder="Username"
-                        /*onChange={(e)=>setUserName(e.target.value) }    */                
+                    <input type="text" name="username" placeholder="Username"                     
                      required/>
-                    <input type="email" name="email" placeholder="email"
-                        /*onChange={(e)=>setEmail(e.target.value)}*/
+                    <input type="email" name="email" placeholder="email"     
                      required/>
-                    <input type="password" name="password" placeholder="password"
-                        /*onChange={(e)=>setPassword(e.target.value)} */                   
-                      required/>
+                    <input type="password" name="password" placeholder="password >=8"
+                    minLength="8" required/>
                     <span>頭像 (Avatar)</span>
                     <input type="file" id="file" accept="image/*" required/>
                     <button className="sign_in" disabled={isButtonDisabled}>Register up</button>
