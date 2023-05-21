@@ -4,11 +4,13 @@ import { auth, db, storage } from "../../../publicCompontents/firebase"
 import { doc, setDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import '../style/login.css'
+import { useNavigate} from "react-router-dom";
 const Login=()=>{
     const [Login,setLogin]=useState('login')
     const [err,setErr]=useState(false)
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);//怕有人手賤
-    
+    const navigate = useNavigate();
+
     const RegisterOrLogin=()=>{//切換註冊登入
         if(Login==='login')setLogin('signup')
         else setLogin('login')
@@ -59,6 +61,7 @@ const Login=()=>{
                     await setDoc(doc(db, "userChats", res.user.uid), {});
                     alert('註冊成功:', userName)
                     setErr(false)
+                    navigate("/chatroom");//跳轉到聊天室
                   } catch (err) {
                     console.log(err)
                     setErr(true)
