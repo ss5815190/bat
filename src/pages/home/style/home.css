@@ -64,6 +64,27 @@
     border: none;
 
 }
+.home .container .sidebar .search .dropdown{
+	background-color: rgba(240, 240, 240, 1.0);
+	width: 100%;
+}
+.home .container .sidebar .search .dropdown .userChat{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    cursor: pointer;
+}
+.home .container .sidebar .search .dropdown .userChat img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    background-color: white;
+}
+.home .container .sidebar .search .dropdown .userChat span{
+    color: #161a26;
+}
 .home .container .sidebar .search input::placeholder{
     color: lightgray;
 }
