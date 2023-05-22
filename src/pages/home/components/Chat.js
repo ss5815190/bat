@@ -1,10 +1,13 @@
-import Message from "./Message"
+import Input from "./Input.js"
+import Messages from "./Messages.js"
 
 
 const Chat = () => {
   return (
     <div className="chat">
-      <Message/>
+      <div className="chatbar">name:</div>
+      <Messages/>
+      <Input/>
     </div>
   )
 }

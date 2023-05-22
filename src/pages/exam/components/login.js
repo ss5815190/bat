@@ -15,17 +15,8 @@ const Login=()=>{
         if(Login==='login')setLogin('signup')
         else setLogin('login')
         
-    }/*
-    useEffect(() => {
-        // 每次 Login 狀態改變時觸發重新渲染
-        console.log(Login)try {
-  const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-  const user = userCredential.user;
-  alert('註冊成功:', user);
-} catch (error) {
-  alert('註冊失敗:', error);
-}
-    }, [Login]);*/
+    }
+    //註冊頁面送出表單
     const onSubmit=async (e) =>{
 
         e.preventDefault()
@@ -40,9 +31,12 @@ const Login=()=>{
             const res=await  createUserWithEmailAndPassword(auth, email, password)
            
             const date = new Date().getTime();
+            //圖片名字
             const storageRef = ref(storage, `${userName + date}`)
+            //上傳圖片到firebase storage
             await uploadBytesResumable(storageRef, userAvatar).then(
                 () => {
+                    //從firebase storage拿到圖片網址
                 getDownloadURL(storageRef).then(async (downloadURL) => {
                   try {
                     //更新個人資料
