@@ -41,7 +41,7 @@ const Login=()=>{
                   try {
                     //更新個人資料
                     await updateProfile(res.user, {
-                        userName,
+                        displayName: userName,
                       photoURL: downloadURL,
                     });
                     //建立個人資料
@@ -55,7 +55,11 @@ const Login=()=>{
                     await setDoc(doc(db, "userChats", res.user.uid), {});
                     alert('註冊成功:', userName)
                     setErr(false)
-                    navigate("/chatroom");//跳轉到聊天室
+                    setTimeout(()=>{
+                      navigate("/chatroom");//跳轉到聊天室
+                    }
+                    ,3000)
+                    
                   } catch (err) {
                     console.log(err)
                     setErr(true)
@@ -66,23 +70,22 @@ const Login=()=>{
         }catch(err){
             setErr(true)
         }
-           /*  
-       
-        else{
-            signInWithEmailAndPassword(Auth, email, password)
-            .then((userCredential) => {
-                 // 登入成功後的處理
-                const user = userCredential.user;
-                 alert('登入成功:', user);
-            })
-            .catch((error) => {
-                // 登入失敗的處理
-              alert('登入失敗:', error);
-             });
-        };*/
+          
         setIsButtonDisabled(false);
     }
-    
+    //登入
+    const handleLogin = async (e) => {
+      e.preventDefault();
+      const email = e.target[0].value;
+      const password = e.target[1].value;
+  
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        navigate("/")
+      } catch (err) {
+        setErr(true)
+      }
+    };
     
     return(
         <div className="view">
@@ -90,7 +93,7 @@ const Login=()=>{
             
             <div className="login" style={{display: Login==='login' ? 'block' : 'none' }}>
             <div className="title">Login</div>
-                <form >
+                <form onSubmit={handleLogin}>
                     <input type="email" name="email" placeholder="email"
                     required/>
                     <input type="password" name="password" placeholder="password"
@@ -103,7 +106,8 @@ const Login=()=>{
             <div className="login" style={{display: Login==='signup' ? 'block' : 'none' }}>
             <div className="title">Register</div>
                 <form onSubmit={onSubmit}>
-                    <input type="text" name="username" placeholder="Username"                     
+                    <input type="text" name="username" placeholder="Username"  
+                    maxLength="20"                   
                      required/>
                     <input type="email" name="email" placeholder="email"     
                      required/>
