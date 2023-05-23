@@ -8,8 +8,8 @@
 .home .container{
     border: 1px solid white;
     border-radius: 15px;
-    width: 80%;
-    height: 80%;
+    width: 80dvw;
+    height: 80dvh;
     display: flex;
     overflow: hidden;
 }
@@ -18,6 +18,7 @@
     flex: 1;
     border-right: 2px solid black;
     background-color: #6E85D3;
+    height: 100%;
 }
 /*navbar*/
 .home .container .sidebar .navbar{
@@ -56,6 +57,9 @@
     align-items: center;
     width: 100%;
 }
+.home .container .sidebar .search{
+    height: 100%;
+}
 .home .container .sidebar .search .searchform input{
     width: 90%; 
     height: 30px;
@@ -91,6 +95,7 @@
 /* userfriend*/
 .home .container .sidebar .search .userfriendform{
    overflow: auto;
+   height: 100%;
 }
 .home .container .sidebar .search .userfriendform .userfriend{
     width: 100%;
@@ -98,6 +103,7 @@
     align-items: center;
     gap: 10px;
     color: white;
+    margin-bottom: 5px;
 }
 .home .container .sidebar .search .userfriendform .userfriend:hover{
     background-color: #161a26;
@@ -116,11 +122,12 @@
 }
 .home .container .sidebar .search .userfriendform .userfriend .userfriendinfo p{
     color: #dbdbdb;
+    margin: 1px;
 }
 /*chat*/
 .home .container .chat{
     flex:2;
-   
+   height: 100%;
 }
 .home .container .chat .chatbar{
     width: 100%;
@@ -136,6 +143,7 @@
     background-color: #ebebeb;
     padding: 10px;
     height: calc(100% - 160px);
+    overflow: auto;
 }
 .home .container .chat .messages .message{
     display: flex;

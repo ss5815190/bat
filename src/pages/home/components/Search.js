@@ -1,13 +1,14 @@
-import {collection,query,where,getDocs,setDoc,doc,updateDoc,serverTimestamp,getDoc,} from "firebase/firestore";
+import {collection,query,where,getDocs,setDoc,doc,updateDoc,serverTimestamp,getDoc,onSnapshot} from "firebase/firestore";
 import { db } from "../../../publicCompontents/firebase.js";
 import { AuthContext } from "../../../context/AuthContext.js";
-import {useContext, useState } from "react";
+import {useContext, useEffect, useState } from "react";
 const Search = () => {
     const [username, setUsername] = useState("");//搜尋的名字
     const [user, setUser] = useState(null);
     const [err, setErr] = useState(false);
     const { currentUser } = useContext(AuthContext);
-    
+    const [chats,setChats]=useState([])
+
     const handleKey = (e) => {
         e.code === "Enter" && handleSearch();
       };
@@ -65,7 +66,22 @@ const Search = () => {
         setUser(null);
         setUsername("")
       };
-      
+      //實時更新好友欄位用onSnapshot()方法
+      useEffect(()=>{
+        //重整會發生錯誤 沒拿到currentUser.uid
+        const  getchats=async()=>{
+            const unsub =await onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
+                //console.log("Current data: ", doc.data());
+                //Object.entries()把物件轉為陣列
+                setChats(doc.data())
+            });
+            return () => {
+                unsub();
+            };
+        }
+        //如果currentUser.uid 不為null，執行getchats()
+        currentUser.uid && getchats();
+      },[currentUser.uid])
   return (
     <div className='search'>
         <div className="searchform">
@@ -88,14 +104,19 @@ const Search = () => {
 
         </div>
         <div className="userfriendform">
-            <div className="userfriend">
-                <img src="" alt="" />
-                <div className="userfriendinfo">
-                    <span className="userfriendname">abcccj</span>
-                    <p>hello</p>  
+            {
+                Object.entries(chats).map((chat)=>(
+                <div className="userfriend" key={chat[0]}>
+                    <img src={chat[1].userInfo.photoURL} alt="" />
+                    <div className="userfriendinfo">
+                        <span className="userfriendname">{chat[1].userInfo.userName}</span>
+                        <p>hello</p>  
+                    </div>
                 </div>
                 
-            </div>
+                ))
+            }
+            
         </div>
     </div>
   )
