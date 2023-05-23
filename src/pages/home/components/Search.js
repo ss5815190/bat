@@ -2,12 +2,15 @@ import {collection,query,where,getDocs,setDoc,doc,updateDoc,serverTimestamp,getD
 import { db } from "../../../publicCompontents/firebase.js";
 import { AuthContext } from "../../../context/AuthContext.js";
 import {useContext, useEffect, useState } from "react";
+import { ChatContext } from "../../../context/ChatContext.js";
 const Search = () => {
-    const [username, setUsername] = useState("");//搜尋的名字
-    const [user, setUser] = useState(null);
-    const [err, setErr] = useState(false);
-    const { currentUser } = useContext(AuthContext);
+    const [username, setUsername] = useState("")//搜尋的名字
+    const [user, setUser] = useState(null)
+    const [err, setErr] = useState(false)
     const [chats,setChats]=useState([])
+
+    const { currentUser } = useContext(AuthContext)
+    const{dispatch}=useContext(ChatContext)
 
     const handleKey = (e) => {
         e.code === "Enter" && handleSearch();
@@ -24,8 +27,10 @@ const Search = () => {
           querySnapshot.forEach((doc) => {
             setUser(doc.data());
           });
+          setErr(false)
         } catch (err) {
-          setErr(true);
+          setErr(true)
+          console.log("handleSearch err")
         }
       };
       //檢查firestore 中的聊天是否存在，不存在的話創建 
@@ -37,30 +42,37 @@ const Search = () => {
             : user.uid + currentUser.uid;
         try {
           const res = await getDoc(doc(db, "chats", combinedId));
-    
+          
           if (!res.exists()) {
             //在聊天集合中創建聊天
             await setDoc(doc(db, "chats", combinedId), { messages: [] });
-    
-            //創建用戶聊天(自己)
-            await updateDoc(doc(db, "userChats", currentUser.uid), {
-              [combinedId + ".userInfo"]: {
-                uid: user.uid,
-                userName: user.userName,
-                photoURL: user.photoURL,
+            console.log("對方uid",user.uid,"我的uid",currentUser.uid);
+            
+            //創建用戶聊天(自己) 不知道為什麼只有這邊有用 下面那個怎麼試都寫不進去==
+            await updateDoc(doc(db, "userChats",currentUser.uid), {
+              [combinedId]: {
+                userInfo: {
+                  uid: user.uid,
+                  userName: user.userName,
+                  photoURL: user.photoURL,
+                },
+                date: serverTimestamp(),
               },
-              [combinedId + ".date"]: serverTimestamp(),
-            });
-            //創建用戶聊天(對方)
-            await updateDoc(doc(db, "userChats", user.uid), {
-              [combinedId + ".userInfo"]: {
-                uid: currentUser.uid,
-                userName: currentUser.userName,
-                photoURL: currentUser.photoURL,
-              },
-              [combinedId + ".date"]: serverTimestamp(),
-            });
-          }
+            });//創建用戶聊天(對方)
+            // await updateDoc(doc(db, "userChats",user.uid), {
+            //   [combinedId]: {
+            //     userInfo: {
+            //       uid: currentUser.uid,
+            //       userName: currentUser.userName,
+            //       photoURL: currentUser.photoURL,
+            //     },
+            //     date: serverTimestamp(),
+            //   },
+            // });
+            
+           
+             
+           }
         } catch (err) {}
     
         setUser(null);
@@ -76,12 +88,16 @@ const Search = () => {
                 setChats(doc.data())
             });
             return () => {
-                unsub();
+                unsub()
             };
         }
         //如果currentUser.uid 不為null，執行getchats()
         currentUser.uid && getchats();
       },[currentUser.uid])
+
+      const Selectfriend=(u)=>{
+        dispatch({ type: "CHANGE_USER", payload: u });
+      }
   return (
     <div className='search'>
         <div className="searchform">
@@ -105,12 +121,13 @@ const Search = () => {
         </div>
         <div className="userfriendform">
             {
-                Object.entries(chats).map((chat)=>(
-                <div className="userfriend" key={chat[0]}>
+                Object.entries(chats)?.sort((a,b)=>b[1].date - a[1].date).map((chat)=>(
+                <div className="userfriend" key={chat[0]} 
+                onClick={() => Selectfriend(chat[1].userInfo)}>
                     <img src={chat[1].userInfo.photoURL} alt="" />
                     <div className="userfriendinfo">
                         <span className="userfriendname">{chat[1].userInfo.userName}</span>
-                        <p>hello</p>  
+                        <p>{chat[1].lastMessage?.text}</p>  
                     </div>
                 </div>
                 
