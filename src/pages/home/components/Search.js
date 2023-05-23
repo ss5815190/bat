@@ -58,7 +58,7 @@ const Search = () => {
                 },
                 date: serverTimestamp(),
               },
-            });//創建用戶聊天(對方)
+            });//創建用戶聊天(對方 )
             // await updateDoc(doc(db, "userChats",user.uid), {
             //   [combinedId]: {
             //     userInfo: {
