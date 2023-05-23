@@ -184,7 +184,7 @@
     flex-direction: row-reverse;
 
 }
-.home .container .chat .messages .owner .messageContent{
+.home .container .chat .messages .owner .messagecontent{
     align-items: flex-end;
 }
 .home .container .chat .messages .owner p{
