@@ -21,7 +21,7 @@ const Message = ({message}) => {
           } alt="" />
             <span>{
             message.senderId === currentUser.uid
-              ? currentUser.userName
+              ? currentUser.displayName
               : data.user.userName
           }</span>
         </div>
