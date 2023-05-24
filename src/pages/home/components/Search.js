@@ -48,7 +48,7 @@ const Search = () => {
             await setDoc(doc(db, "chats", combinedId), { messages: [] });
             console.log("對方uid",user.uid,"我的uid",currentUser.uid);
             
-            //創建用戶聊天(自己) 不知道為什麼只有這邊有用 下面那個怎麼試都寫不進去==
+            //創建用戶聊天(自己) 
             await updateDoc(doc(db, "userChats",currentUser.uid), {
               [combinedId]: {
                 userInfo: {
@@ -58,18 +58,18 @@ const Search = () => {
                 },
                 date: serverTimestamp(),
               },
-            });//創建用戶聊天(對方 )
+            });//創建用戶聊天(對方 )之前變數打錯整筆資料寫不進去
+            
             await updateDoc(doc(db, "userChats",user.uid), {
               [combinedId]: {
                 userInfo: {
                   uid: currentUser.uid,
-                  userName: currentUser.userName,
+                  userName: currentUser.displayName,//之前打錯變數名稱
                   photoURL: currentUser.photoURL,
                 },
                 date: serverTimestamp(),
               },
-            });
-            
+            })
            
              
            }

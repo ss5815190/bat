@@ -1,6 +1,7 @@
+
 .home{
     background-color: #a7bcff;
-    height: 100dvh;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -9,7 +10,7 @@
     border: 1px solid white;
     border-radius: 15px;
     width: 80dvw;
-    height: 80dvh;
+    height: 80%;
     display: flex;
     overflow: hidden;
 }

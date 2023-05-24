@@ -8,11 +8,12 @@ const Message = ({message}) => {
     const ref=useRef()
 /*
     useEffect(()=>{
-        ref.current?.scrollIntoView({behavior:"smooth"})
+        ref.current.scrollIntoView({behavior:"smooth"})
+        
     },[message])
 */
   return (
-    <div  className={`message ${message.senderId === currentUser.uid && "owner"}`}  ref={ref}>
+    <div  className={`message ${message.senderId === currentUser.uid && "owner"}`} ref={ref} >
         <div className="messageinfo">
             <img src={
             message.senderId === currentUser.uid
@@ -25,7 +26,7 @@ const Message = ({message}) => {
               : data.user.userName
           }</span>
         </div>
-        <div className="messagecontent">
+        <div className="messagecontent" >
             {message.img && <img src={message.img} alt="" />}
             <p>{message.text}</p>
         </div>
