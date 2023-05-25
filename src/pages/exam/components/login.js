@@ -91,7 +91,7 @@ const Login=()=>{
         <div className="view">
             {/*登入畫面 */}
             
-            <div className="login" style={{display: Login==='login' ? 'block' : 'none' }}>
+            <div className="login" style={{display: Login==='login' ? 'flex' : 'none' }}>
             <div className="title">Login</div>
                 <form onSubmit={handleLogin}>
                     <input type="email" name="email" placeholder="email"
@@ -103,7 +103,7 @@ const Login=()=>{
                 <p>you don't have an account? <button onClick={()=>RegisterOrLogin()}>Register</button></p>
             </div>
              {/*註冊畫面 */}
-            <div className="login" style={{display: Login==='signup' ? 'block' : 'none' }}>
+            <div className="login" style={{display: Login==='signup' ? 'flex' : 'none' }}>
             <div className="title">Register</div>
                 <form onSubmit={onSubmit}>
                     <input type="text" name="username" placeholder="Username"  
