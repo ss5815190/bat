@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Exam from"./pages/exam"
 import Home from"./pages/home"
-import { HashRouter,BrowserRouter, Route, Routes ,Navigate } from "react-router-dom";
+import { HashRouter, Route, Routes ,Navigate } from "react-router-dom";
 import { AuthContext } from "./context/AuthContext";
 function App() {
   const {currentUser}=useContext(AuthContext)
