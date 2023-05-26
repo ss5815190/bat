@@ -9,7 +9,7 @@
 .home .container{
     border: 1px solid white;
     border-radius: 15px;
-    width: 80dvw;
+    width: 80vw;
     height: 80%;
     display: flex;
     overflow: hidden;
@@ -138,6 +138,10 @@
     padding: 10px;
     display: flex;
     align-items: center;
+    gap: 30px;
+}
+.home .container .chat .chatbar .phone_back{
+    display: none;
 }
 /*messages*/
 .home .container .chat .messages{
@@ -226,4 +230,30 @@
     color: white;
     background-color: #8da4f1;
     cursor: pointer;
+  }
+  @media (max-width: 767px) {
+    /* 手機螢幕下的樣式 */
+    .chat{
+        display: none;
+    }
+    .home .container .chat .chatbar .phone_back{
+        display: block;
+        font-size: 22px;
+        border: none;
+        background-color: transparent;
+        padding: 0;
+        width: 22px;
+        height: 22px;
+    }
+    .sidebar{
+        display: block;
+    }
+    
+    #chat.active{
+        display: block;    
+    }
+    #sidebar.n-active{
+        display: none;
+    }
+   
   }

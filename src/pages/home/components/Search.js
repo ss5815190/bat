@@ -11,7 +11,8 @@ const Search = () => {
 
     const { currentUser } = useContext(AuthContext)
     const{dispatch}=useContext(ChatContext)
-
+    
+    /*按下enter時觸發handleSearch()*/ 
     const handleKey = (e) => {
         e.code === "Enter" && handleSearch();
       };
@@ -87,6 +88,7 @@ const Search = () => {
                 //Object.entries()把物件轉為陣列
                 setChats(doc.data())
             });
+
             return () => {
                 unsub()
             };
@@ -95,8 +97,15 @@ const Search = () => {
         currentUser.uid && getchats();
       },[currentUser.uid])
 
+      //當好友欄位被點擊時
       const Selectfriend=(u)=>{
         dispatch({ type: "CHANGE_USER", payload: u });
+        /*rwd手機畫面收合側邊欄位 */
+        const chat =  document.getElementById('chat');
+        const sidebar =  document.getElementById('sidebar');
+        chat.classList.toggle('active');
+        sidebar.classList.toggle('n-active');
+        console.log("好友欄位被點擊!!!sidebar收起來");
       }
   return (
     <div className='search'>
@@ -120,9 +129,9 @@ const Search = () => {
 
         </div>
         <div className="userfriendform">
-            {
+            {                //用於對陣列中的元素進行排序。使用降序排列讓最新的日期在最前面
                 Object.entries(chats)?.sort((a,b)=>b[1].date - a[1].date).map((chat)=>(
-                <div className="userfriend" key={chat[0]} 
+                <div className="userfriend"  key={chat[0]} 
                 onClick={() => Selectfriend(chat[1].userInfo)}>
                     <img src={chat[1].userInfo.photoURL} alt="" />
                     <div className="userfriendinfo">
