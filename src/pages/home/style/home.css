@@ -233,6 +233,10 @@
   }
   @media (max-width: 767px) {
     /* 手機螢幕下的樣式 */
+    .home .container{
+        width: 95vw;
+        height: 90%;
+    }
     .chat{
         display: none;
     }
@@ -244,6 +248,16 @@
         padding: 0;
         width: 22px;
         height: 22px;
+    }
+    .messages .message .messageinfo{
+        font-size: 14px;
+    }
+    .messages .message .messageinfo img{
+        width: 30px;
+        height: 30px;
+    }
+    .chat .messages .message .messagecontent p{
+        padding: 5px 10px;
     }
     .sidebar{
         display: block;
