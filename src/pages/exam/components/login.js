@@ -91,7 +91,10 @@ const Login=()=>{
         <div className="view">
             {/*登入畫面 */}
             
+            
             <div className="login" style={{display: Login==='login' ? 'flex' : 'none' }}>
+            <div>測試信箱:bill@gmail.com</div>
+            <div>密碼:12345678</div>
             <div className="title">Login</div>
                 <form onSubmit={handleLogin}>
                     <input type="email" name="email" placeholder="email"
