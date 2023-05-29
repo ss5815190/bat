@@ -93,7 +93,7 @@ const Login=()=>{
             
             
             <div className="login" style={{display: Login==='login' ? 'flex' : 'none' }}>
-            <div>測試信箱:bill@gmail.com</div>
+            <div>測試信箱:bill@yahoo.com</div>
             <div>密碼:12345678</div>
             <div className="title">Login</div>
                 <form onSubmit={handleLogin}>
