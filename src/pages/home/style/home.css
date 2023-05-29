@@ -149,6 +149,7 @@
     padding: 10px;
     height: calc(100% - 160px);
     overflow: auto;
+    scroll-behavior: smooth;
 }
 .home .container .chat .messages .message{
     display: flex;
